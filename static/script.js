@@ -133,6 +133,13 @@ function init() {
   addMessage("lobby", "Rocket", "Hey! Open another browser tab, send a message.", true);
   addMessage("rocket", "Rocket", "This is another room. Neat, huh?", true);
 
+  let currentdate = new Date();
+  let oneJan = new Date(currentdate.getFullYear(),0,1);
+  let numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
+  let startWeek = 16;
+  let chinCount = Math.ceil((( currentdate.getDay() + 1 + numberOfDays) / 7) - startWeek ) ;
+  console.log(`The week number of the current date (${currentdate}) is ${chinCount}.`);
+
   // Set up the form handler.
   newMessageForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -162,7 +169,7 @@ function init() {
     roomNameField.value = "";
     if (!addRoom(room)) return;
 
-    addMessage(room, "Rocket", `Look, your own "${room}" room! Nice.`, true);
+    addMessage(room, "Rocket", `This week chin-up count is  "${chinCount}" ! No pain no gains.`, true);
   })
 
   // Subscribe to server-sent events.
